@@ -31,17 +31,33 @@ for hour_data in data["list"]:
     if int(condition_code) < 600:
         will_rain = True 
     
-if will_rain:
-    #send email  
-    my_email = os.getenv("EMAIL")
-    password = os.getenv("PASSWORD")
-    to_email = os.getenv("TO_EMAIL")
+# if will_rain:
+#     #send email  
+#     my_email = os.getenv("EMAIL")
+#     password = os.getenv("PASSWORD")
+#     to_email = os.getenv("TO_EMAIL")
     
-    connection = smtplib.SMTP("smtp.gmail.com",587, timeout=10)
-    connection.starttls() 
-    connection.login(user=my_email, password=password)
+#     connection = smtplib.SMTP("smtp.gmail.com",587, timeout=10)
+#     connection.starttls() 
+#     connection.login(user=my_email, password=password)
     
-    rain_message = "Subject: Rain Alert\n\n It will rain today, this is a reminder to bring an umberlla :)"
-    connection.sendmail(from_addr=my_email, to_addrs=to_email, msg=rain_message)
+#     rain_message = "Subject: Rain Alert\n\n It will rain today, this is a reminder to bring an umberlla :)"
+#     connection.sendmail(from_addr=my_email, to_addrs=to_email, msg=rain_message)
 
-    connection.close()
+#     connection.close()
+
+my_email = os.getenv("EMAIL")
+password = os.getenv("PASSWORD")
+to_email = os.getenv("TO_EMAIL")
+
+connection = smtplib.SMTP("smtp.gmail.com",587, timeout=10)
+connection.starttls() 
+connection.login(user=my_email, password=password)
+
+if will_rain:
+    rain_message = "Subject: Rain Alert\n\n It will rain today, this is a reminder to bring an umberlla :)"
+else:
+    rain_message ="Subject: Rain Alert\n\n Not raining but just a test!"
+connection.sendmail(from_addr=my_email, to_addrs=to_email, msg=rain_message)
+
+connection.close()
