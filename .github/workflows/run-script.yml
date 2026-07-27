@@ -3,8 +3,7 @@ name: Rain Alert
 on:
   workflow_dispatch: #manual trigger button in the Actions tab
   schedule:
-    - cron: '0 7 * * *' 
-      timezone: 'America/New_York'
+    - cron: '0 11 * * *' #7am est 
 
 jobs:
   run-script:
